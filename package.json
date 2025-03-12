@@ -1,0 +1,21 @@
+{
+  "name": "mevbot",
+  "version": "1.0.0",
+  "description": "MEV arbitrage bot for Ethereum",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": ["mev", "arbitrage", "ethereum", "defi", "bot"],
+  "author": "DavidMillerD",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "web3": "^1.8.2",
+    "axios": "^1.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
