@@ -1,19 +1,39 @@
+require('dotenv').config();
 const { ethers } = require('ethers');
 
-// Basic MEV bot setup
 console.log('Starting MEV Bot...');
 
-// TODO: Add provider connection
-// TODO: Add mempool monitoring
-// TODO: Add arbitrage logic
+let provider;
+
+async function initProvider() {
+    try {
+        const rpcUrl = process.env.ETHEREUM_RPC_URL;
+        if (!rpcUrl) {
+            console.error('ETHEREUM_RPC_URL not found in environment');
+            process.exit(1);
+        }
+        
+        provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+        const network = await provider.getNetwork();
+        console.log(`Connected to ${network.name} (${network.chainId})`);
+        
+        const blockNumber = await provider.getBlockNumber();
+        console.log(`Current block: ${blockNumber}`);
+        
+    } catch (error) {
+        console.error('Failed to connect to Ethereum:', error.message);
+        process.exit(1);
+    }
+}
 
 async function main() {
+    await initProvider();
     console.log('MEV Bot initialized');
     
-    // Placeholder for bot logic
+    // Basic monitoring loop
     setInterval(() => {
         console.log('Scanning for opportunities...');
-    }, 5000);
+    }, 10000);
 }
 
 main().catch(console.error);
